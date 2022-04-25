@@ -84,9 +84,7 @@ const ZipMap: FC<Props> = ({ lng, lat }) => {
               width: 1,
             });
 
-            console.log(12434, center);
             await loadCoverageArea(center);
-
             setIsMapLoaded(true);
           }
         });

@@ -18,14 +18,19 @@ const SelectedZipList = () => {
     <aside className="ml-5 flex-1">
       <section className="flex items-center justify-between">
         <h3 className="font-bold">Selected Zips: {zips.length}</h3>
-        <button onClick={selectAllInCoveredArea}>Select all in area</button>
+        <button
+          className="px-6 py-2 border border-blue-500 font-medium text-sm hover:bg-blue-600 hover:text-blue-100 text-blue-600 rounded"
+          onClick={selectAllInCoveredArea}
+        >
+          Select all in area
+        </button>
       </section>
       <section className="py-5">
-        <ul className="max-h-70vh overflow-y-auto">
+        <ul className="max-h-70vh overflow-y-auto pr-5">
           {zips.map((zip) => (
-            <li key={zip} className="flex items-center justify-between">
+            <li key={zip} className="flex items-center justify-between mb-2">
               <b>{zip}</b>
-              <button className="p-1" onClick={remove(zip)}>
+              <button className="px-2 py-1 bg-red-500 font-medium text-sm hover:bg-red-600 text-red-100 rounded" onClick={remove(zip)}>
                 X
               </button>
             </li>
