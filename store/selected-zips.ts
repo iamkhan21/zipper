@@ -3,12 +3,14 @@ import { Feature, GeoJsonProperties, Geometry } from "geojson";
 import { $coverageArea } from "@store/coverage-area";
 import { FeatureCollection } from "@turf/helpers";
 import wretch from "wretch";
+import { $loader, disableLoader, enableLoader } from "@store/loader";
 
 export const $selectedZips = map<
   Record<string, Feature<Geometry, GeoJsonProperties>>
 >({});
 
 export async function addZipsToSelected(zips: string[]) {
+  enableLoader("Loading zips boundaries...");
   const boundaries = await wretch(`/api/boundaries`).post({ zips }).json();
 
   (boundaries as Feature<Geometry>[]).forEach((zipBoundaries) => {
@@ -17,6 +19,10 @@ export async function addZipsToSelected(zips: string[]) {
       zipBoundaries
     );
   });
+
+  setTimeout(() => {
+    $loader.get() && disableLoader();
+  }, 300);
 }
 
 export function removeZipFromSelected(zip: string) {
@@ -36,6 +42,7 @@ export function toggleZip(zip: string) {
 }
 
 export async function selectAllInCoveredArea() {
+  enableLoader("Looking for zips in covered area...");
   const coveredArea = $coverageArea.get();
 
   const points = await wretch(`/api/zips-in-area`).post(coveredArea).json();

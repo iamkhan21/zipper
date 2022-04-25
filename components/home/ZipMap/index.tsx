@@ -12,6 +12,7 @@ import { $coverageArea, loadCoverageArea } from "@store/coverage-area";
 import { useStore } from "@nanostores/react";
 import { $selectedZips, toggleZip } from "@store/selected-zips";
 import { featureCollection } from "@turf/helpers";
+import { $loader, enableLoader } from "@store/loader";
 
 type Props = {
   lng: number;
@@ -26,9 +27,11 @@ const ZipMap: FC<Props> = ({ lng, lat }) => {
   const [isMapLoaded, setIsMapLoaded] = useState(false);
   const coverageArea = useStore($coverageArea);
   const selectedZips = useStore($selectedZips);
+  const loader = useStore($loader);
 
   useEffect(() => {
     if (lat && lng) {
+      enableLoader("Loading map...");
       (async () => {
         // @ts-ignore
         await import("mapbox-gl/dist/mapbox-gl.css");
@@ -114,8 +117,13 @@ const ZipMap: FC<Props> = ({ lng, lat }) => {
   }, [isMapLoaded, selectedZips]);
 
   return (
-    <section className="w-65vw flex flex-col items-center justify-center">
+    <section className="relative w-65vw flex flex-col items-center justify-center">
       <section style={{ height: "100%", width: "100%" }} id="map" />
+      {loader && (
+        <section className="absolute inset-0 flex flex-col items-center justify-center bg-gray-100/50">
+          <h1 className="text-lg font-bold">{loader}</h1>
+        </section>
+      )}
     </section>
   );
 };
