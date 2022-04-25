@@ -24,7 +24,7 @@
     "next": "12.1.5",
     "react": "18.0.0",
     "react-dom": "18.0.0",
-    "tabler-icons-react": "^1.46.0",
+    "tabler-icons-react": "1.46.0",
     "wretch": "1.7.9"
   },
   "devDependencies": {

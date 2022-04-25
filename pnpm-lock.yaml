@@ -22,7 +22,7 @@ specifiers:
   prettier: 2.6.2
   react: 18.0.0
   react-dom: 18.0.0
-  tabler-icons-react: ^1.46.0
+  tabler-icons-react: 1.46.0
   typescript: 4.6.3
   windicss: 3.5.1
   windicss-webpack-plugin: 1.7.2
