@@ -11,6 +11,7 @@ export const $selectedZips = map<
 
 export async function addZipsToSelected(zips: string[]) {
   enableLoader("Loading zips boundaries...");
+
   const boundaries = await wretch(`/api/boundaries`).post({ zips }).json();
 
   (boundaries as Feature<Geometry>[]).forEach((zipBoundaries) => {

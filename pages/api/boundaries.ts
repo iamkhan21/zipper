@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { Feature, Geometry } from "geojson";
-import boundaries from "@data/usa_zip_boundaries.json";
+import { getZipBoundaries } from "@lib/firebase";
 
 export default async function handler(
   req: NextApiRequest,
@@ -12,10 +11,11 @@ export default async function handler(
     return res.status(405).end();
   }
 
-  const result = zips.map(
-    //@ts-ignore
-    (zip: string) => (boundaries as Record<string, Feature<Geometry>>)[zip]
+  const result = await Promise.allSettled(zips.map(getZipBoundaries));
+
+  const boundaries = result.map((data) =>
+    data.status === "fulfilled" ? data.value : {}
   );
 
-  res.status(200).json(result);
+  res.status(200).json(boundaries);
 }

@@ -6,8 +6,7 @@ import {
   selectAllInCoveredArea,
 } from "@store/selected-zips";
 import { $loader } from "@store/loader";
-import { Button } from "@mantine/core";
-import { List } from "@mantine/core";
+import { Button, List } from "@mantine/core";
 import { Trash } from "tabler-icons-react";
 
 function remove(zip: string) {
@@ -24,7 +23,7 @@ const SelectedZipList = () => {
       <section className="flex items-center justify-between">
         <h3 className="font-bold">Selected Zips: {zips.length}</h3>
         <Button
-            compact
+          compact
           variant="outline"
           onClick={selectAllInCoveredArea}
           disabled={!!loader}
