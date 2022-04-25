@@ -14,6 +14,9 @@ export async function loadCoverageArea(point: LngLatLike) {
     const data = await wretch(`/api/coverage?lng=${lng}&lat=${lat}`)
       .get()
       .json();
+
+    if (data.message) return;
+
     $coverageArea.set(data as FeatureCollection<Geometry, GeoJsonProperties>);
   } catch (e) {
     console.log(e);
