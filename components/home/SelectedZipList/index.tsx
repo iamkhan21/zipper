@@ -6,6 +6,9 @@ import {
   selectAllInCoveredArea,
 } from "@store/selected-zips";
 import { $loader } from "@store/loader";
+import { Button } from "@mantine/core";
+import { List } from "@mantine/core";
+import { Trash } from "tabler-icons-react";
 
 function remove(zip: string) {
   return () => removeZipFromSelected(zip);
@@ -20,28 +23,33 @@ const SelectedZipList = () => {
     <aside className="ml-5 flex-1">
       <section className="flex items-center justify-between">
         <h3 className="font-bold">Selected Zips: {zips.length}</h3>
-        <button
-          className="px-6 py-2 border border-blue-500 font-medium text-sm hover:bg-blue-600 hover:text-blue-100 text-blue-600 rounded"
+        <Button
+            compact
+          variant="outline"
           onClick={selectAllInCoveredArea}
           disabled={!!loader}
         >
-          Select all in area
-        </button>
+          Select zips in area
+        </Button>
       </section>
-      <section className="py-5">
-        <ul className="max-h-70vh overflow-y-auto pr-5">
+      <section className="max-h-80vh overflow-y-auto mt-5 pr-5">
+        <List listStyleType="none">
           {zips.map((zip) => (
-            <li key={zip} className="flex items-center justify-between mb-2">
-              <b>{zip}</b>
-              <button
-                className="px-2 py-1 bg-red-500 font-medium text-sm hover:bg-red-600 text-red-100 rounded"
-                onClick={remove(zip)}
-              >
-                X
-              </button>
-            </li>
+            <List.Item key={zip}>
+              <div className="flex items-center justify-between mb-2">
+                <b>{zip}</b>
+                <Button
+                  variant="subtle"
+                  color="red"
+                  compact
+                  onClick={remove(zip)}
+                >
+                  <Trash color="red" />
+                </Button>
+              </div>
+            </List.Item>
           ))}
-        </ul>
+        </List>
       </section>
     </aside>
   );

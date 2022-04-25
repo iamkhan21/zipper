@@ -117,7 +117,7 @@ const ZipMap: FC<Props> = ({ lng, lat }) => {
   }, [isMapLoaded, selectedZips]);
 
   return (
-    <section className="relative w-65vw flex flex-col items-center justify-center">
+    <section className="relative w-75vw flex flex-col items-center justify-center">
       <section style={{ height: "100%", width: "100%" }} id="map" />
       {loader && (
         <section className="absolute inset-0 flex flex-col items-center justify-center bg-gray-100/50">

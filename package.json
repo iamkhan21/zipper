@@ -11,6 +11,9 @@
     "update:cssdb": "npx browserslist@latest --update-db"
   },
   "dependencies": {
+    "@mantine/core": "4.1.5",
+    "@mantine/hooks": "4.1.5",
+    "@mantine/next": "4.1.5",
     "@nanostores/react": "0.2.0",
     "@turf/bbox": "6.5.0",
     "@turf/helpers": "6.5.0",
@@ -21,6 +24,7 @@
     "next": "12.1.5",
     "react": "18.0.0",
     "react-dom": "18.0.0",
+    "tabler-icons-react": "^1.46.0",
     "wretch": "1.7.9"
   },
   "devDependencies": {

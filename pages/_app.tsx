@@ -7,15 +7,15 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Zipper</title>
+        <title>Ziparea</title>
         <meta
           name="description"
-          content="Zipper - help you to see service area"
+          content="Ziparea - help you to see service area"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header className="px-5">
-        <h1 className="text-xl font-black">Zipper</h1>
+        <h1 className="text-xl font-black">Ziparea</h1>
       </header>
       <main className="p-5">
         <Component {...pageProps} />
