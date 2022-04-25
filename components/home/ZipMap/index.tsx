@@ -52,6 +52,8 @@ const ZipMap: FC<Props> = ({ lng, lat }) => {
 
               if (zipCode) {
                 toggleZip(zipCode);
+              } else {
+                alert("This area without zip code");
               }
             });
 
