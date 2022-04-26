@@ -14,7 +14,10 @@ function MyApp({ Component, pageProps }: AppProps) {
           name="description"
           content={`${appName} - help you to handle your service area`}
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/manifest.webmanifest" />
       </Head>
       <header className="py-1 px-5 flex items-center gap-2">
         <img src="/logo.svg" width={24} alt="Logo" />
