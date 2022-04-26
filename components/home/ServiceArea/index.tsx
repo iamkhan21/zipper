@@ -32,6 +32,8 @@ const ServiceArea = () => {
   const loader = useStore($loader);
 
   const zips = Object.keys(selectedZips);
+  const isZipsSelected = !!zips.length;
+
   return (
     <section className="space-y-5">
       <section className="flex items-center justify-between">
@@ -45,7 +47,13 @@ const ServiceArea = () => {
           >
             Select all in area
           </Button>
-          <Button compact color="red" variant="outline" onClick={clearSelected}>
+          <Button
+            compact
+            color="red"
+            variant="outline"
+            onClick={clearSelected}
+            disabled={!isZipsSelected}
+          >
             Clear
           </Button>
         </div>
@@ -69,7 +77,7 @@ const ServiceArea = () => {
           ))}
         </List>
       </section>
-      {!!zips.length && (
+      {isZipsSelected && (
         <section>
           <Button fullWidth color="green" onClick={copyZips}>
             Copy all selected zip codes
