@@ -10,6 +10,7 @@ import { $loader } from "@store/loader";
 import { Button, List } from "@mantine/core";
 import { Trash } from "tabler-icons-react";
 import { showNotification } from "@mantine/notifications";
+import {$coverageAreas} from "@store/coverage-areas";
 
 function remove(zip: string) {
   return () => removeZipFromSelected(zip);
@@ -29,10 +30,12 @@ function copyZips() {
 
 const ServiceArea = () => {
   const selectedZips = useStore($selectedZips);
-  const loader = useStore($loader);
+  const coveredAreas = useStore($coverageAreas);
 
   const zips = Object.keys(selectedZips);
+  const areas = Object.keys(coveredAreas);
   const isZipsSelected = !!zips.length;
+  const isAreasSelected = !!areas.length;
 
   return (
     <section className="space-y-5">
@@ -43,7 +46,7 @@ const ServiceArea = () => {
             compact
             variant="outline"
             onClick={selectAllInCoveredArea}
-            disabled={!!loader}
+            disabled={!isAreasSelected}
           >
             Select all in area
           </Button>
