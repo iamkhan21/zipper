@@ -4,6 +4,7 @@ import {
   createSource,
   createSourceFillLayer,
   createSourceLineLayer,
+  createSourceSymbolLayer,
   fitToFeatureBounds,
   initiateMap,
   setDataToSource,
@@ -11,17 +12,20 @@ import {
 import { $coverageAreas } from "@store/coverage-areas";
 import { useStore } from "@nanostores/react";
 import { $selectedZips, toggleZip } from "@store/selected-zips";
-import { featureCollection } from "@turf/helpers";
+import { featureCollection, points, Position } from "@turf/helpers";
 import { $loader, disableLoader, enableLoader } from "@store/loader";
+import { $addresses } from "@store/address";
 
 const ZipMap = () => {
   const isoSource = "iso";
   const zipSource = "zips";
+  const serviceSource = "services";
 
   const map = useRef<MapObject | null>(null);
   const [isMapLoaded, setIsMapLoaded] = useState(false);
   const coverageArea = useStore($coverageAreas);
   const selectedZips = useStore($selectedZips);
+  const serviceAddresses = useStore($addresses);
   const loader = useStore($loader);
 
   useEffect(() => {
@@ -56,6 +60,7 @@ const ZipMap = () => {
 
           createSource(map.current, isoSource);
           createSource(map.current, zipSource);
+          createSource(map.current, serviceSource);
 
           const isoColor = "#ff7100";
           createSourceFillLayer(map.current, isoSource, "isoFill", {
@@ -74,11 +79,15 @@ const ZipMap = () => {
             color: zipColor,
             opacity: 0.5,
           });
-
           createSourceLineLayer(map.current, zipSource, "zipsLine", {
             color: zipColor,
             opacity: 1,
             width: 1,
+          });
+
+          createSourceSymbolLayer(map.current, serviceSource, "symbols", {
+            icon: "place",
+            size: 0.8,
           });
 
           disableLoader();
@@ -110,6 +119,16 @@ const ZipMap = () => {
       setDataToSource(map.current as MapObject, zipSource, zips);
     }
   }, [isMapLoaded, selectedZips]);
+
+  useEffect(() => {
+    if (map.current && isMapLoaded) {
+      const services = Object.values(serviceAddresses).map(
+        (service) => service.coordinates
+      );
+      const zips = points(services as Position[]);
+      setDataToSource(map.current as MapObject, serviceSource, zips);
+    }
+  }, [isMapLoaded, serviceAddresses]);
 
   return (
     <>

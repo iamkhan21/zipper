@@ -57,6 +57,28 @@ export function createSourceFillLayer(
   });
 }
 
+export type SymbolOptions = {
+  icon: string;
+  size: number;
+};
+
+export function createSourceSymbolLayer(
+  map: Map,
+  sourceName: string,
+  id: string,
+  { size, icon }: SymbolOptions
+) {
+  map.addLayer({
+    id,
+    type: "symbol",
+    source: sourceName,
+    layout: {
+      "icon-image": icon,
+      "icon-size": size,
+    },
+  });
+}
+
 export type LineOptions = {
   color: string;
   opacity: number;
