@@ -21,27 +21,37 @@ export async function addAddress(
   uid: AddressUid = nanoid(10)
 ) {
   enableLoader("Adding service address...");
+  const storedAddress = $addresses.get()[uid];
 
   try {
-    const results = await wretch(`/api/geocoding`).post({ address }).json();
+    let data: Address;
 
-    if (results.message) {
-      disableLoader();
-      return;
+    if (storedAddress?.address !== address) {
+      const results = await wretch(`/api/geocoding`).post({ address }).json();
+
+      if (results.message) {
+        disableLoader();
+        return;
+      }
+
+      const foundData = results.features[0];
+
+      if (!foundData) {
+        disableLoader();
+        return;
+      }
+
+      data = {
+        address: foundData.place_name,
+        coordinates: foundData.center,
+        time,
+      };
+    } else {
+      data = {
+        ...storedAddress,
+        time,
+      };
     }
-
-    const foundData = results.features[0];
-
-    if (!foundData) {
-      disableLoader();
-      return;
-    }
-    console.log(foundData);
-    const data: Address = {
-      address: foundData.place_name,
-      coordinates: foundData.center,
-      time,
-    };
 
     $addresses.setKey(uid, data);
     addCoverageArea(uid, data.coordinates, data.time);
