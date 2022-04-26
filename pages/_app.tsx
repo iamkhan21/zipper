@@ -5,7 +5,7 @@ import "../styles/main.css";
 import "windi.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const appName = "Ziparea";
+  const appName = "ZipArea";
   return (
     <NotificationsProvider>
       <Head>
@@ -16,7 +16,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header className="px-5">
+      <header className="py-1 px-5 flex items-center gap-2">
+        <img src="/logo.svg" width={24} alt="Logo" />
         <h1 className="text-xl font-black">{appName}</h1>
       </header>
       <main className="p-5">

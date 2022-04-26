@@ -9,7 +9,7 @@ const Home: NextPage = () => {
       <section className="relative flex-1 flex flex-col items-center justify-center">
         <ZipMap />
       </section>
-      <aside className="ml-5 basis-85 space-y-10">
+      <aside className="ml-5 basis-90 space-y-5">
         <ServiceAddresses />
         <ServiceArea />
       </aside>
