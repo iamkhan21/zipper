@@ -9,9 +9,22 @@ import {
 import { $loader } from "@store/loader";
 import { Button, List } from "@mantine/core";
 import { Trash } from "tabler-icons-react";
+import { showNotification } from "@mantine/notifications";
 
 function remove(zip: string) {
   return () => removeZipFromSelected(zip);
+}
+
+function copyZips() {
+  const zips = Object.keys($selectedZips.get()).join(", ");
+
+  navigator.clipboard.writeText(zips).then(() => {
+    showNotification({
+      color: "green",
+      title: "Copied!",
+      message: "All selected zip codes were copied to your clipboard.",
+    });
+  });
 }
 
 const ServiceArea = () => {
@@ -56,6 +69,13 @@ const ServiceArea = () => {
           ))}
         </List>
       </section>
+      {!!zips.length && (
+        <section>
+          <Button fullWidth color="green" onClick={copyZips}>
+            Copy all selected zip codes
+          </Button>
+        </section>
+      )}
     </section>
   );
 };

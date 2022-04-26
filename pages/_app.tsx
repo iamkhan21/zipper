@@ -1,21 +1,23 @@
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import { NotificationsProvider } from "@mantine/notifications";
 import "../styles/main.css";
 import "windi.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const appName = "Ziparea";
   return (
-    <>
+    <NotificationsProvider>
       <Head>
-        <title>Ziparea</title>
+        <title>{appName}</title>
         <meta
           name="description"
-          content="Ziparea - help you to see service area"
+          content={`${appName} - help you to handle your service area`}
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header className="px-5">
-        <h1 className="text-xl font-black">Ziparea</h1>
+        <h1 className="text-xl font-black">{appName}</h1>
       </header>
       <main className="p-5">
         <Component {...pageProps} />
@@ -33,7 +35,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           </a>
         </small>
       </footer>
-    </>
+    </NotificationsProvider>
   );
 }
 
