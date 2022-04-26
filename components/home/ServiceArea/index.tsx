@@ -92,6 +92,3 @@ const ServiceArea = () => {
 };
 
 export default ServiceArea;
-
-// 1945 South Military Highway, Chesapeake
-// 4891 Nine Mile Road, Richmond

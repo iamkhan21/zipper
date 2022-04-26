@@ -10,9 +10,13 @@ const ServiceAddresses = () => {
       <h3 className="font-bold">Service Addresses</h3>
       <p className="leading-tight">
         <small>
-            Enter your address in&nbsp;the input box below. <br />
-            The second entry is&nbsp;the time in&nbsp;minutes to&nbsp;create <br/>
-            an&nbsp;availability zone for your business.
+          Enter your address in&nbsp;the input box below.
+          <br />
+          (Example: 1945 South Military Highway, Chesapeake)
+          <br />
+          The second entry is&nbsp;the time in&nbsp;minutes to&nbsp;create{" "}
+          <br />
+          an&nbsp;availability zone for your business.
         </small>
       </p>
       <AddressForm />
