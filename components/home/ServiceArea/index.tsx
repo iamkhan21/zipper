@@ -61,7 +61,7 @@ const ServiceArea = () => {
           </Button>
         </div>
       </section>
-      <section className="h-50vh overflow-y-auto pr-1">
+      <section className="h-40vh overflow-y-auto pr-1">
         <List listStyleType="none">
           {zips.map((zip) => (
             <List.Item key={zip}>

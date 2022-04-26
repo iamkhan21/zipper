@@ -1,4 +1,4 @@
-import type { LngLatLike, Map } from "mapbox-gl";
+import type { Anchor, LngLatLike, Map } from "mapbox-gl";
 import mapboxgl, { GeoJSONSource } from "mapbox-gl";
 import {
   Feature,
@@ -59,6 +59,7 @@ export function createSourceFillLayer(
 
 export type SymbolOptions = {
   icon: string;
+  anchor: Anchor;
   size: number;
 };
 
@@ -66,7 +67,7 @@ export function createSourceSymbolLayer(
   map: Map,
   sourceName: string,
   id: string,
-  { size, icon }: SymbolOptions
+  { size, icon ,anchor}: SymbolOptions
 ) {
   map.addLayer({
     id,
@@ -75,6 +76,7 @@ export function createSourceSymbolLayer(
     layout: {
       "icon-image": icon,
       "icon-size": size,
+      "icon-anchor":anchor
     },
   });
 }

@@ -87,7 +87,8 @@ const ZipMap = () => {
 
           createSourceSymbolLayer(map.current, serviceSource, "symbols", {
             icon: "place",
-            size: 0.8,
+            size: 0.5,
+            anchor: "bottom",
           });
 
           disableLoader();
