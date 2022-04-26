@@ -67,7 +67,7 @@ export function createSourceSymbolLayer(
   map: Map,
   sourceName: string,
   id: string,
-  { size, icon ,anchor}: SymbolOptions
+  { size, icon, anchor }: SymbolOptions
 ) {
   map.addLayer({
     id,
@@ -76,7 +76,7 @@ export function createSourceSymbolLayer(
     layout: {
       "icon-image": icon,
       "icon-size": size,
-      "icon-anchor":anchor
+      "icon-anchor": anchor,
     },
   });
 }

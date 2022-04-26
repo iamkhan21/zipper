@@ -10,7 +10,7 @@ import { $loader } from "@store/loader";
 import { Button, List } from "@mantine/core";
 import { Trash } from "tabler-icons-react";
 import { showNotification } from "@mantine/notifications";
-import {$coverageAreas} from "@store/coverage-areas";
+import { $coverageAreas } from "@store/coverage-areas";
 
 function remove(zip: string) {
   return () => removeZipFromSelected(zip);

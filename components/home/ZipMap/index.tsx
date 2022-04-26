@@ -134,6 +134,46 @@ const ZipMap = () => {
   return (
     <>
       <section style={{ height: "100%", width: "100%" }} id="map" />
+
+      <section className="absolute bottom-10 right-5 bg-white p-2">
+        <div className="flex items-center gap-2">
+          <span
+            style={{
+              display: "inline-block",
+              height: "15px",
+              width: "15px",
+              backgroundColor: "transparent",
+              border: "1px solid #1c87f2",
+            }}
+          />
+          <p>Zip boundaries</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <span
+            style={{
+              display: "inline-block",
+              height: "15px",
+              width: "15px",
+              backgroundColor: "rgba(255,113,0,.25)",
+              border: "1px solid #ff7100",
+            }}
+          />
+          <p>Coverage area</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <span
+            style={{
+              display: "inline-block",
+              height: "15px",
+              width: "15px",
+              backgroundColor: "rgba(2,100,1,.5)",
+              border: "1px solid #026401",
+            }}
+          />
+          <p>Selected zip</p>
+        </div>
+      </section>
+
       {loader && (
         <section className="absolute inset-0 flex flex-col items-center justify-center bg-gray-100/50">
           <h1 className="text-lg font-bold">{loader}</h1>
