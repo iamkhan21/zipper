@@ -22,10 +22,12 @@
     "firebase": "9.6.11",
     "isomorphic-unfetch": "3.1.0",
     "mapbox-gl": "2.8.2",
+    "nanoid": "3.3.3",
     "nanostores": "0.5.12",
     "next": "12.1.5",
     "react": "18.0.0",
     "react-dom": "18.0.0",
+    "react-hook-form": "7.30.0",
     "tabler-icons-react": "1.46.0",
     "wretch": "1.7.9"
   },

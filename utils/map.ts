@@ -10,12 +10,16 @@ import bbox from "@turf/bbox";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_KEY as string;
 
-export function initiateMap(containerId: string, center: LngLatLike): Map {
+export function initiateMap(
+  containerId: string,
+  center: LngLatLike,
+  zoom: number
+): Map {
   return new mapboxgl.Map({
     container: containerId,
     style: "mapbox://styles/onexel/cl1ruw4st002h14o0ioafsexk",
     center,
-    zoom: 8,
+    zoom,
     maxZoom: 15,
     minZoom: 4,
   });

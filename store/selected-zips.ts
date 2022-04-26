@@ -1,7 +1,7 @@
 import { map } from "nanostores";
 import { Feature, GeoJsonProperties, Geometry } from "geojson";
-import { $coverageArea } from "@store/coverage-area";
-import { FeatureCollection } from "@turf/helpers";
+import { $coverageAreas } from "@store/coverage-areas";
+import { featureCollection, FeatureCollection } from "@turf/helpers";
 import wretch from "wretch";
 import { $loader, disableLoader, enableLoader } from "@store/loader";
 
@@ -14,12 +14,13 @@ export async function addZipsToSelected(zips: string[]) {
 
   const boundaries = await wretch(`/api/boundaries`).post({ zips }).json();
 
+  const selected = $selectedZips.get();
+
   (boundaries as Feature<Geometry>[]).forEach((zipBoundaries) => {
-    $selectedZips.setKey(
-      zipBoundaries.properties?.code as string,
-      zipBoundaries
-    );
+    selected[zipBoundaries.properties?.code as string] = zipBoundaries;
   });
+
+  $selectedZips.set({ ...selected });
 
   setTimeout(() => {
     $loader.get() && disableLoader();
@@ -34,6 +35,10 @@ export function removeZipFromSelected(zip: string) {
   $selectedZips.set({ ...selected });
 }
 
+export function clearSelected() {
+  $selectedZips.set({});
+}
+
 export function toggleZip(zip: string) {
   if ($selectedZips.get()[zip]) {
     removeZipFromSelected(zip);
@@ -44,9 +49,11 @@ export function toggleZip(zip: string) {
 
 export async function selectAllInCoveredArea() {
   enableLoader("Looking for zips in covered area...");
-  const coveredArea = $coverageArea.get();
+  const coveredArea = $coverageAreas.get();
+  const features = Object.values(coveredArea);
+  const areas = featureCollection(features);
 
-  const points = await wretch(`/api/zips-in-area`).post(coveredArea).json();
+  const points = await wretch(`/api/zips-in-area`).post(areas).json();
 
   const zips = (points as FeatureCollection<Geometry>).features.map((zip) => {
     return zip.properties?.code as string;

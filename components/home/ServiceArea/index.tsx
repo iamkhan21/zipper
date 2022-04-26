@@ -2,6 +2,7 @@ import React from "react";
 import { useStore } from "@nanostores/react";
 import {
   $selectedZips,
+  clearSelected,
   removeZipFromSelected,
   selectAllInCoveredArea,
 } from "@store/selected-zips";
@@ -13,25 +14,30 @@ function remove(zip: string) {
   return () => removeZipFromSelected(zip);
 }
 
-const SelectedZipList = () => {
+const ServiceArea = () => {
   const selectedZips = useStore($selectedZips);
   const loader = useStore($loader);
 
   const zips = Object.keys(selectedZips);
   return (
-    <aside className="ml-5 flex-1">
+    <section className="space-y-5">
       <section className="flex items-center justify-between">
-        <h3 className="font-bold">Selected Zips: {zips.length}</h3>
-        <Button
-          compact
-          variant="outline"
-          onClick={selectAllInCoveredArea}
-          disabled={!!loader}
-        >
-          Select zips in area
-        </Button>
+        <h3 className="font-bold">Service Area ({zips.length})</h3>
+        <div className="flex gap-1">
+          <Button
+            compact
+            variant="outline"
+            onClick={selectAllInCoveredArea}
+            disabled={!!loader}
+          >
+            Select all in area
+          </Button>
+          <Button compact color="red" variant="outline" onClick={clearSelected}>
+            Clear
+          </Button>
+        </div>
       </section>
-      <section className="max-h-80vh overflow-y-auto mt-5 pr-5">
+      <section className="h-55vh overflow-y-auto pr-1">
         <List listStyleType="none">
           {zips.map((zip) => (
             <List.Item key={zip}>
@@ -50,8 +56,11 @@ const SelectedZipList = () => {
           ))}
         </List>
       </section>
-    </aside>
+    </section>
   );
 };
 
-export default SelectedZipList;
+export default ServiceArea;
+
+// 1945 South Military Highway, Chesapeake
+// 4891 Nine Mile Road, Richmond

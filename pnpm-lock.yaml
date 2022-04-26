@@ -19,11 +19,13 @@ specifiers:
   firebase: 9.6.11
   isomorphic-unfetch: 3.1.0
   mapbox-gl: 2.8.2
+  nanoid: 3.3.3
   nanostores: 0.5.12
   next: 12.1.5
   prettier: 2.6.2
   react: 18.0.0
   react-dom: 18.0.0
+  react-hook-form: 7.30.0
   tabler-icons-react: 1.46.0
   typescript: 4.6.3
   windicss: 3.5.1
@@ -42,10 +44,12 @@ dependencies:
   firebase: 9.6.11
   isomorphic-unfetch: 3.1.0
   mapbox-gl: 2.8.2
+  nanoid: 3.3.3
   nanostores: 0.5.12
   next: 12.1.5_react-dom@18.0.0+react@18.0.0
   react: 18.0.0
   react-dom: 18.0.0_react@18.0.0
+  react-hook-form: 7.30.0_react@18.0.0
   tabler-icons-react: 1.46.0_react@18.0.0
   wretch: 1.7.9
 
@@ -3038,6 +3042,15 @@ packages:
 
   /react-fast-compare/3.2.0:
     resolution: {integrity: sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==}
+    dev: false
+
+  /react-hook-form/7.30.0_react@18.0.0:
+    resolution: {integrity: sha512-DzjiM6o2vtDGNMB9I4yCqW8J21P314SboNG1O0obROkbg7KVS0I7bMtwSdKyapnCPjHgnxc3L7E5PEdISeEUcQ==}
+    engines: {node: '>=12.22.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18
+    dependencies:
+      react: 18.0.0
     dev: false
 
   /react-is/16.13.1:
