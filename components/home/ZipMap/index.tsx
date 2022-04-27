@@ -142,8 +142,8 @@ const ZipMap = () => {
               display: "inline-block",
               height: "15px",
               width: "15px",
-              backgroundColor: "transparent",
-              border: "1px solid #1c87f2",
+              backgroundColor: "rgba(3,112,221,.1)",
+              border: "1px solid #0370dd",
             }}
           />
           <p>Zip boundaries</p>
