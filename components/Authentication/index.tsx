@@ -12,8 +12,10 @@ const Authentication = () => {
     return () => setActiveForm(formName);
   }
 
-  const signinLinkClass = activeForm === "signin" ? "font-black" : "hover:underline";
-  const signupLinkClass = activeForm === "signup" ? "font-black" : "hover:underline";
+  const signinLinkClass =
+    activeForm === "signin" ? "font-black" : "hover:underline";
+  const signupLinkClass =
+    activeForm === "signup" ? "font-black" : "hover:underline";
 
   return (
     <article className="h-full flex items-center justify-center">

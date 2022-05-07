@@ -9,10 +9,26 @@ import { LngLatLike } from "mapbox-gl";
 import wretch from "wretch";
 import { disableLoader, enableLoader } from "@store/loader";
 import { AddressUid } from "@store/address";
+import { createStore, del, entries, set, UseStore } from "idb-keyval";
 
-export const $coverageAreas = map<
-  Record<AddressUid, Feature<Geometry, GeoJsonProperties>>
->({});
+let coverageDB: UseStore;
+
+type CoverageMap = Record<AddressUid, Feature<Geometry, GeoJsonProperties>>;
+
+export const $coverageAreas = map<CoverageMap>({});
+
+export function loadCoverageAreasFromStorage() {
+  coverageDB = createStore("coverage", "coverage");
+  entries(coverageDB).then((entries) => {
+    const coverageAreas: CoverageMap = {};
+
+    for (const [key, value] of entries) {
+      coverageAreas[key as string] = value;
+    }
+
+    $coverageAreas.set(coverageAreas);
+  });
+}
 
 export async function addCoverageArea(
   uid: AddressUid,
@@ -34,10 +50,10 @@ export async function addCoverageArea(
       return;
     }
 
-    $coverageAreas.setKey(
-      uid,
-      (data as FeatureCollection<Geometry, GeoJsonProperties>).features[0]
-    );
+    const feature = (data as FeatureCollection<Geometry, GeoJsonProperties>)
+      .features[0];
+    $coverageAreas.setKey(uid, feature);
+    set(uid, feature, coverageDB);
   } catch (e) {
     console.log(e);
   } finally {
@@ -51,4 +67,5 @@ export function removeCoverageArea(uid: AddressUid) {
   delete areas[uid];
 
   $coverageAreas.set({ ...areas });
+  del(uid, coverageDB);
 }

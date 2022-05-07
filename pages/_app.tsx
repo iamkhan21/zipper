@@ -9,6 +9,7 @@ import "windi.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const appName = "ZipArea";
+
   return (
     <NotificationsProvider>
       <Meta appName={appName} /> <Header appName={appName} />

@@ -19,7 +19,6 @@ export function checkAuthentication() {
     .then((session) => {
       if (session.user) {
         $user.set(session.user);
-        console.log(session.user);
       } else {
         $user.set(null);
       }

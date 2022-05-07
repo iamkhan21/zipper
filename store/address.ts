@@ -4,6 +4,7 @@ import { nanoid } from "nanoid";
 import { disableLoader, enableLoader } from "@store/loader";
 import { addCoverageArea, removeCoverageArea } from "@store/coverage-areas";
 import wretch from "wretch";
+import { createStore, del, entries, set, UseStore } from "idb-keyval";
 
 export type AddressUid = string;
 
@@ -13,7 +14,24 @@ export type Address = {
   coordinates: LngLatLike;
 };
 
-export const $addresses = map<Record<AddressUid, Address>>({});
+let addressesDB: UseStore;
+
+type AddressMap = Record<AddressUid, Address>;
+
+export function loadAddressesFromStorage() {
+  addressesDB = createStore("addresses", "addresses");
+  entries(addressesDB).then((entries) => {
+    const addresses: AddressMap = {};
+
+    for (const [key, value] of entries) {
+      addresses[key as string] = value;
+    }
+
+    $addresses.set(addresses);
+  });
+}
+
+export const $addresses = map<AddressMap>({});
 
 export async function addAddress(
   address: string,
@@ -54,6 +72,7 @@ export async function addAddress(
     }
 
     $addresses.setKey(uid, data);
+    set(uid, data, addressesDB);
     addCoverageArea(uid, data.coordinates, data.time);
   } catch (e) {
     console.log(e);
@@ -67,5 +86,6 @@ export function removeAddress(uid: AddressUid) {
   delete addresses[uid];
 
   $addresses.set({ ...addresses });
+  del(uid, addressesDB);
   removeCoverageArea(uid);
 }
