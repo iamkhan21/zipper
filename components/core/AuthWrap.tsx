@@ -2,6 +2,7 @@ import React, { FC, ReactNode, useEffect } from "react";
 import { $authChecked, $user, checkAuthentication } from "@store/user";
 import { useStore } from "@nanostores/react";
 import Authentication from "@components/Authentication";
+import Loader from "@components/shared/Loader";
 
 type Props = {
   children?: ReactNode;
@@ -22,7 +23,9 @@ const AuthWrap: FC<Props> = ({ children }) => {
       <Authentication />
     )
   ) : (
-    <p>Loading</p>
+    <article className="h-full flex flex-col items-center justify-center">
+      <Loader />
+    </article>
   );
 };
 
