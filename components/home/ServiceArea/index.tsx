@@ -6,7 +6,6 @@ import {
   removeZipFromSelected,
   selectAllInCoveredArea,
 } from "@store/selected-zips";
-import { $loader } from "@store/loader";
 import { Button, List } from "@mantine/core";
 import { Trash } from "tabler-icons-react";
 import { showNotification } from "@mantine/notifications";

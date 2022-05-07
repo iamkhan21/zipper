@@ -1,44 +1,23 @@
 import type { AppProps } from "next/app";
-import Head from "next/head";
 import { NotificationsProvider } from "@mantine/notifications";
-import "../styles/main.css";
+import Footer from "@components/core/Footer";
+import Meta from "@components/core/Meta";
+import Header from "@components/core/Header";
+import AuthWrap from "@components/core/AuthWrap";
+import "@styles/main.css";
 import "windi.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const appName = "ZipArea";
   return (
     <NotificationsProvider>
-      <Head>
-        <title>{appName}</title>
-        <meta
-          name="description"
-          content={`${appName} - help you to handle your service area`}
-        />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/manifest.webmanifest" />
-      </Head>
-      <header className="py-1 px-5 flex items-center gap-2">
-        <img src="/logo.svg" width={24} alt="Logo" />
-        <h1 className="text-xl font-black">{appName}</h1>
-      </header>
+      <Meta appName={appName} /> <Header appName={appName} />
       <main className="p-5">
-        <Component {...pageProps} />
+        <AuthWrap>
+          <Component {...pageProps} />
+        </AuthWrap>
       </main>
-      <footer className="px-5">
-        <small>
-          Created by{" "}
-          <a
-            href="https://www.8byte.agency"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-500"
-          >
-            8byte Agency
-          </a>
-        </small>
-      </footer>
+      <Footer />
     </NotificationsProvider>
   );
 }
