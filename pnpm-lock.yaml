@@ -11,6 +11,7 @@ specifiers:
   '@turf/helpers': 6.5.0
   '@turf/points-within-polygon': 6.5.0
   '@turf/simplify': 6.5.0
+  '@types/geojson': 7946.0.10
   '@types/mapbox-gl': 2.7.1
   '@types/mapbox__mapbox-gl-draw': 1.2.5
   '@types/node': 17.0.31
@@ -67,6 +68,7 @@ dependencies:
   wretch: 1.7.9
 
 devDependencies:
+  '@types/geojson': 7946.0.10
   '@types/mapbox-gl': 2.7.1
   '@types/mapbox__mapbox-gl-draw': 1.2.5
   '@types/node': 17.0.31
@@ -1305,8 +1307,8 @@ packages:
       '@turf/meta': 6.5.0
     dev: false
 
-  /@types/geojson/7946.0.8:
-    resolution: {integrity: sha512-1rkryxURpr6aWP7R786/UQOkJ3PcpQiWkAXBmdWc7ryFWqN6a4xfK7BtjXvFBKO9LjQ+MWQSWxYeZX1OApnArA==}
+  /@types/geojson/7946.0.10:
+    resolution: {integrity: sha512-Nmh0K3iWQJzniTuPRcJn5hxXkfB1T1pgB89SBig5PlJQU5yocazeu4jATJlaA0GYFKWMqDdvYemoSnF2pXgLVA==}
     dev: true
 
   /@types/json5/0.0.29:
@@ -1320,13 +1322,13 @@ packages:
   /@types/mapbox-gl/2.7.1:
     resolution: {integrity: sha512-qr2cWQIJ12TMQg6cYc/FELgwXgcuLlDxcFyQH2EMdr3R8Mg5PFQUNZP5M4ZUanRVwJdQ10pMEVRTAjW9HqLdzg==}
     dependencies:
-      '@types/geojson': 7946.0.8
+      '@types/geojson': 7946.0.10
     dev: true
 
   /@types/mapbox__mapbox-gl-draw/1.2.5:
     resolution: {integrity: sha512-swDFPOPYkDSLWWXznurjradEAX05E0l8QZwdciQkTBjjg5dQmOjNfCIN54HNIDpKoSypSY+8T5SyFAOOm5LSTQ==}
     dependencies:
-      '@types/geojson': 7946.0.8
+      '@types/geojson': 7946.0.10
       '@types/mapbox-gl': 2.7.1
     dev: true
 
