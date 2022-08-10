@@ -14,9 +14,10 @@ import { useStore } from "@nanostores/react";
 import { featureCollection } from "@turf/helpers";
 import { $loader, disableLoader, enableLoader } from "@store/loader";
 import data from "../data.json";
-import { Feature, GeoJsonProperties, Geometry } from "geojson";
+import { Feature, GeoJsonProperties, Geometry, Polygon } from "geojson";
 import { Marker } from "mapbox-gl";
 import simplify from "@turf/simplify";
+import polygonSmooth from "@turf/polygon-smooth";
 
 const isoSource = "iso";
 
@@ -43,9 +44,10 @@ const ZipMap = () => {
       map.current = initiateMap("map", center, 4);
       const Draw = addMapDraw(map.current);
 
-      const options = { tolerance: 0.1, highQuality: true };
-      const simplified = simplify(data.area.geometry, options);
-      Draw.add(simplified as Geometry);
+      const polygon = data.area.geometry as Polygon;
+      const simplified = simplify(polygon, { tolerance: 0.06 });
+        const smoothed = polygonSmooth(simplified, { iterations: 1 });
+      Draw.add(smoothed);
 
       map.current.on("draw.modechange", (e) => {
         const data = Draw.getAll();
