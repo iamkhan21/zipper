@@ -39,7 +39,7 @@ specifiers:
   userbase-js: 2.8.0
   windicss: 3.5.6
   windicss-webpack-plugin: 1.7.5
-  wretch: 2.0.2
+  wretch: 1.7.9
 
 dependencies:
   '@mantine/core': 4.2.2_uzin5kwe6i2xzywl5csdivttt4
@@ -67,7 +67,7 @@ dependencies:
   react-hook-form: 7.34.0_react@18.2.0
   tabler-icons-react: 1.54.0_react@18.2.0
   userbase-js: 2.8.0
-  wretch: 2.0.2
+  wretch: 1.7.9
 
 devDependencies:
   '@types/geojson': 7946.0.10
@@ -3932,9 +3932,8 @@ packages:
   /wrappy/1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
 
-  /wretch/2.0.2:
-    resolution: {integrity: sha512-8UwKaNQOy8JV8PFBS30VRcAMbCmaC236zTI5TkCT929jdUEgUnme3hYM+PqovA1C093OPkewPK6+Hu3QrzoFRA==}
-    engines: {node: '>=14'}
+  /wretch/1.7.9:
+    resolution: {integrity: sha512-uUSze1Z72RiQjyoqr7r1KW+05WDNeqqKOeyJDPhw6EVEaOgp9RQNrr8AQt3OF7qylQbh2iVtT9r0nXIHlbJgqQ==}
     dev: false
 
   /ws/8.8.1:

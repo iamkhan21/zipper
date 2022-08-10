@@ -4,6 +4,7 @@ import { $user, signout } from "@store/user";
 import { useStore } from "@nanostores/react";
 import { Logout } from "tabler-icons-react";
 import Link from "next/link";
+import Image from "next/image";
 
 type Props = {
   appName: string;
@@ -14,7 +15,7 @@ const Header: FC<Props> = ({ appName }) => {
   return (
     <header className="py-1 px-5 flex items-center justify-between gap-5">
       <section className="flex items-center gap-2">
-        <img
+        <Image
           src="/images/logo.svg"
           className="logo"
           height={64}

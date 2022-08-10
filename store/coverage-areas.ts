@@ -39,7 +39,7 @@ export async function addCoverageArea(
   const [lng, lat] = point as [number, number];
 
   try {
-    const data = await wretch(
+    const data: any = await wretch(
       `/api/coverage?lng=${lng}&lat=${lat}&time=${time}`
     )
       .get()

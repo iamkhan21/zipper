@@ -32,13 +32,13 @@ export function checkAuthentication() {
 }
 
 export function signup(creds: Credentials) {
-  return userbase.signUp(creds).then((user) => {
+  return userbase.signUp({ ...creds, rememberMe: "local" }).then((user) => {
     $user.set(user);
   });
 }
 
 export function signin(creds: Credentials) {
-  return userbase.signIn(creds).then((user) => {
+  return userbase.signIn({ ...creds, rememberMe: "local" }).then((user) => {
     $user.set(user);
   });
 }

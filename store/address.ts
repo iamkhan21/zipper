@@ -45,7 +45,9 @@ export async function addAddress(
     let data: Address;
 
     if (storedAddress?.address !== address) {
-      const results = await wretch(`/api/geocoding`).post({ address }).json();
+      const results: any = await wretch(`/api/geocoding`)
+        .post({ address })
+        .json();
 
       if (results.message) {
         disableLoader();

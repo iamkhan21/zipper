@@ -28,7 +28,7 @@ const ZipMap = () => {
   const selectedZips = useStore($selectedZips);
   const serviceAddresses = useStore($addresses);
   const loader = useStore($loader);
-  console.log(2222, coverageArea);
+
   useEffect(() => {
     enableLoader("Loading map...");
     (async () => {
