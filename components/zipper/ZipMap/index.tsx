@@ -16,18 +16,19 @@ import { featureCollection, points, Position } from "@turf/helpers";
 import { $loader, disableLoader, enableLoader } from "@store/loader";
 import { $addresses } from "@store/address";
 
-const ZipMap = () => {
-  const isoSource = "iso";
-  const zipSource = "zips";
-  const serviceSource = "services";
+const MAP_STYLE = process.env.NEXT_PUBLIC_MAPBOX_ZIP_STYLE as string;
+const isoSource = "iso";
+const zipSource = "zips";
+const serviceSource = "services";
 
+const ZipMap = () => {
   const map = useRef<MapObject | null>(null);
   const [isMapLoaded, setIsMapLoaded] = useState(false);
   const coverageArea = useStore($coverageAreas);
   const selectedZips = useStore($selectedZips);
   const serviceAddresses = useStore($addresses);
   const loader = useStore($loader);
-
+  console.log(2222, coverageArea);
   useEffect(() => {
     enableLoader("Loading map...");
     (async () => {
@@ -39,7 +40,7 @@ const ZipMap = () => {
 
       const center: LngLatLike = [-96.064453125, 37.21720617274819];
 
-      map.current = initiateMap("map", center, 4);
+      map.current = initiateMap("map", center, 4, MAP_STYLE);
 
       map.current.on("load", async () => {
         if (map.current) {

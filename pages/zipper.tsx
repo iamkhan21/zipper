@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
-import Map from "@components/home/Map";
-import ServiceAddresses from "@components/home/ServiceAddresses";
+import ZipMap from "@components/zipper/ZipMap";
+import ServiceArea from "@components/zipper/ServiceArea";
+import ServiceAddresses from "@components/zipper/ServiceAddresses";
 import { loadAddressesFromStorage } from "@store/address";
 import { useEffect } from "react";
 import { loadCoverageAreasFromStorage } from "@store/coverage-areas";
@@ -14,10 +15,11 @@ const Home: NextPage = () => {
   return (
     <article className="flex h-full">
       <section className="relative flex-1 flex flex-col items-center justify-center">
-        <Map />
+        <ZipMap />
       </section>
       <aside className="ml-5 basis-90 space-y-5">
         <ServiceAddresses />
+        <ServiceArea />
       </aside>
     </article>
   );

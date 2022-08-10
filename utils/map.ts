@@ -1,5 +1,5 @@
 import type { Anchor, LngLatLike, Map } from "mapbox-gl";
-import mapboxgl, { GeoJSONSource } from "mapbox-gl";
+import mapboxgl, { GeoJSONSource, Marker, MarkerOptions } from "mapbox-gl";
 import {
   Feature,
   FeatureCollection,
@@ -7,22 +7,51 @@ import {
   Geometry,
 } from "geojson";
 import bbox from "@turf/bbox";
+import MapboxDraw from "@mapbox/mapbox-gl-draw";
+import drawStyles from "@data/map-draw-styles.json";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_KEY as string;
 
 export function initiateMap(
   containerId: string,
   center: LngLatLike,
-  zoom: number
+  zoom: number,
+  style = "mapbox://styles/mapbox/streets-v11"
 ): Map {
   return new mapboxgl.Map({
     container: containerId,
-    style: "mapbox://styles/onexel/cl1ruw4st002h14o0ioafsexk",
+    style,
     center,
     zoom,
     maxZoom: 15,
     minZoom: 4,
   });
+}
+
+export function addMapDraw(map: Map) {
+  const draw = new MapboxDraw({
+    displayControlsDefault: false,
+    // Select which mapbox-gl-draw control buttons to add to the map.
+    controls: {
+      polygon: true,
+      trash: true,
+    },
+    // Set mapbox-gl-draw to draw by default.
+    // The user does not have to click the polygon control button first.
+    defaultMode: "simple_select",
+    styles: drawStyles,
+  });
+  map.addControl(draw);
+
+  return draw;
+}
+
+export function drawMarker(
+  map: Map,
+  coordinates: LngLatLike,
+  options: MarkerOptions = {}
+): Marker {
+  return new mapboxgl.Marker(options).setLngLat(coordinates).addTo(map);
 }
 
 export function createSource(map: Map, sourceName: string) {
@@ -124,6 +153,6 @@ export function fitToFeatureBounds(map: Map, data: FeatureData) {
       [bounds[0], bounds[1]],
       [bounds[2], bounds[3]],
     ],
-    { padding: 15 }
+    { padding: 30 }
   );
 }
