@@ -43,7 +43,7 @@ const ZipMap = () => {
       map.current = initiateMap("map", center, 4);
       const Draw = addMapDraw(map.current);
 
-      const options = { tolerance: 0.04, highQuality: false };
+      const options = { tolerance: 0.1, highQuality: true };
       const simplified = simplify(data.area.geometry, options);
       Draw.add(simplified as Geometry);
 
