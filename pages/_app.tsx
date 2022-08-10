@@ -12,7 +12,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <NotificationsProvider>
-      <Meta appName={appName} /> <Header appName={appName} />
+      <Meta appName={appName} />
+      <Header appName={appName} />
       <main className="p-5">
         <AuthWrap>
           <Component {...pageProps} />

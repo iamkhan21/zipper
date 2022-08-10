@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import type { LngLatLike, Map as MapObject } from "mapbox-gl";
+import { Marker } from "mapbox-gl";
 import {
   addMapDraw,
   createSource,
@@ -15,7 +16,6 @@ import { featureCollection } from "@turf/helpers";
 import { $loader, disableLoader, enableLoader } from "@store/loader";
 import data from "../data.json";
 import { Feature, GeoJsonProperties, Geometry, Polygon } from "geojson";
-import { Marker } from "mapbox-gl";
 import simplify from "@turf/simplify";
 import polygonSmooth from "@turf/polygon-smooth";
 
@@ -46,7 +46,7 @@ const ZipMap = () => {
 
       const polygon = data.area.geometry as Polygon;
       const simplified = simplify(polygon, { tolerance: 0.06 });
-        const smoothed = polygonSmooth(simplified, { iterations: 1 });
+      const smoothed = polygonSmooth(simplified, { iterations: 1 });
       Draw.add(smoothed);
 
       map.current.on("draw.modechange", (e) => {

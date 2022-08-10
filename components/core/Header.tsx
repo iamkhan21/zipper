@@ -14,11 +14,16 @@ const Header: FC<Props> = ({ appName }) => {
   return (
     <header className="py-1 px-5 flex items-center justify-between gap-5">
       <section className="flex items-center gap-2">
-        <img src="/logo.svg" width={24} alt="Logo" />
-        <h1 className="text-xl font-black">{appName}</h1>
+        <img
+          src="/images/logo.svg"
+          className="logo"
+          height={64}
+          width={159}
+          alt="Logo"
+        />
       </section>
       {user && (
-        <nav className='flex items-center gap-5'>
+        <nav className="flex items-center gap-5">
           <Link href="/">
             <a>Version 2</a>
           </Link>

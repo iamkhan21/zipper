@@ -4,3 +4,7 @@
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
 }
+
+.logo {
+  height: 64px;
+}
