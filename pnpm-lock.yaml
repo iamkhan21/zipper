@@ -6,7 +6,7 @@ specifiers:
   '@mantine/next': 4.2.2
   '@mantine/notifications': 4.2.2
   '@mapbox/mapbox-gl-draw': 1.3.0
-  '@nanostores/react': 0.2.0
+  '@nanostores/react': 0.3.0
   '@turf/bbox': 6.5.0
   '@turf/helpers': 6.5.0
   '@turf/points-within-polygon': 6.5.0
@@ -15,7 +15,7 @@ specifiers:
   '@types/geojson': 7946.0.10
   '@types/mapbox-gl': 2.7.1
   '@types/mapbox__mapbox-gl-draw': 1.2.5
-  '@types/node': 17.0.31
+  '@types/node': 18.6.5
   '@types/react': 18.0.17
   '@types/react-dom': 18.0.6
   await-of: 3.1.1
@@ -27,8 +27,8 @@ specifiers:
   idb-keyval: 6.2.0
   isomorphic-unfetch: 3.1.0
   mapbox-gl: 2.9.2
-  nanoid: 3.3.4
-  nanostores: 0.5.12
+  nanoid: 4.0.0
+  nanostores: 0.6.0
   next: 12.2.4
   prettier: 2.7.1
   react: 18.2.0
@@ -39,7 +39,7 @@ specifiers:
   userbase-js: 2.8.0
   windicss: 3.5.6
   windicss-webpack-plugin: 1.7.5
-  wretch: 1.7.9
+  wretch: 2.0.2
 
 dependencies:
   '@mantine/core': 4.2.2_uzin5kwe6i2xzywl5csdivttt4
@@ -47,7 +47,7 @@ dependencies:
   '@mantine/next': 4.2.2_2vrjmahi5jcsut7ajxrocfyyke
   '@mantine/notifications': 4.2.2_3zqgo7sklr4anzhrp5innfswfu
   '@mapbox/mapbox-gl-draw': 1.3.0
-  '@nanostores/react': 0.2.0_3iuy2wepgz3w53kxsavf2p7rzm
+  '@nanostores/react': 0.3.0_resngft2y545aodfc4fe35fzvu
   '@turf/bbox': 6.5.0
   '@turf/helpers': 6.5.0
   '@turf/points-within-polygon': 6.5.0
@@ -59,21 +59,21 @@ dependencies:
   idb-keyval: 6.2.0
   isomorphic-unfetch: 3.1.0
   mapbox-gl: 2.9.2
-  nanoid: 3.3.4
-  nanostores: 0.5.12
+  nanoid: 4.0.0
+  nanostores: 0.6.0
   next: 12.2.4_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-hook-form: 7.34.0_react@18.2.0
   tabler-icons-react: 1.54.0_react@18.2.0
   userbase-js: 2.8.0
-  wretch: 1.7.9
+  wretch: 2.0.2
 
 devDependencies:
   '@types/geojson': 7946.0.10
   '@types/mapbox-gl': 2.7.1
   '@types/mapbox__mapbox-gl-draw': 1.2.5
-  '@types/node': 17.0.31
+  '@types/node': 18.6.5
   '@types/react': 18.0.17
   '@types/react-dom': 18.0.6
   dprint: 0.27.1
@@ -690,7 +690,7 @@ packages:
     engines: {node: ^8.13.0 || >=10.10.0}
     dependencies:
       '@grpc/proto-loader': 0.7.0
-      '@types/node': 17.0.31
+      '@types/node': 18.6.5
     dev: false
 
   /@grpc/proto-loader/0.6.13:
@@ -925,17 +925,18 @@ packages:
     engines: {node: '>=6.0.0'}
     dev: false
 
-  /@nanostores/react/0.2.0_3iuy2wepgz3w53kxsavf2p7rzm:
-    resolution: {integrity: sha512-8kR6Ke8KAacAuBvodGrMNtLof8xF44WkfqtWWMZffP0TZsXEePdIWEQ6MDmCvVzbFAwOKvF71YjVAJ660NYCAw==}
-    engines: {node: ^12.0.0 || ^14.0.0 || >=16.0.0}
+  /@nanostores/react/0.3.0_resngft2y545aodfc4fe35fzvu:
+    resolution: {integrity: sha512-gf2vRS2kGxLzLAF20BlUeFxMtBVEHaErk2XQ1YYnTAPtuesBD2nB1ndAOOinL2mSS2zxyQ4jtW3uljvbsGNuIQ==}
+    engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
     peerDependencies:
-      nanostores: ^0.5.2
+      nanostores: ^0.6.0
       react: '>=18.0.0'
       react-dom: '>=18.0.0'
     dependencies:
-      nanostores: 0.5.12
+      nanostores: 0.6.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      use-sync-external-store: 1.2.0_react@18.2.0
     dev: false
 
   /@next/env/12.2.4:
@@ -1341,8 +1342,8 @@ packages:
       '@types/mapbox-gl': 2.7.1
     dev: true
 
-  /@types/node/17.0.31:
-    resolution: {integrity: sha512-AR0x5HbXGqkEx9CadRH3EBYx/VkiUgZIhP4wvPn/+5KIsgpNoyFaRlVe0Zlx9gRtg8fA06a9tskE2MSN7TcG4Q==}
+  /@types/node/18.6.5:
+    resolution: {integrity: sha512-Xjt5ZGUa5WusGZJ4WJPbOT8QOqp6nDynVFRKcUt32bOgvXEoc6o085WNkYTMO7ifAj2isEfQQ2cseE+wT6jsRw==}
 
   /@types/prop-types/15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
@@ -2915,9 +2916,15 @@ packages:
     hasBin: true
     dev: false
 
-  /nanostores/0.5.12:
-    resolution: {integrity: sha512-5BccS7nNInTc7Noz2gv19gyx5h5y6m72nj6ZnCTV98GdFdwvcFJf2MMl+7VsX76E1toV1YrLqlDn+R+OF73PVg==}
-    engines: {node: ^12.0.0 || ^14.0.0 || >=16.0.0}
+  /nanoid/4.0.0:
+    resolution: {integrity: sha512-IgBP8piMxe/gf73RTQx7hmnhwz0aaEXYakvqZyE302IXW3HyVNhdNGC+O2MwMAVhLEnvXlvKtGbtJf6wvHihCg==}
+    engines: {node: ^14 || ^16 || >=18}
+    hasBin: true
+    dev: false
+
+  /nanostores/0.6.0:
+    resolution: {integrity: sha512-CQpKE8wtaJAr66hbg32t0MOAeybzLywU6UsLAX18kyQL/bME+xwhjWpmrvJRBp5kueFy6hs2oHlt3HFpNP+JaA==}
+    engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
     dev: false
 
   /natural-compare/1.4.0:
@@ -3211,7 +3218,7 @@ packages:
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
       '@types/long': 4.0.2
-      '@types/node': 17.0.31
+      '@types/node': 18.6.5
       long: 4.0.0
     dev: false
 
@@ -3231,7 +3238,7 @@ packages:
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
       '@types/long': 4.0.2
-      '@types/node': 17.0.31
+      '@types/node': 18.6.5
       long: 5.2.0
     dev: false
 
@@ -3925,8 +3932,9 @@ packages:
   /wrappy/1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
 
-  /wretch/1.7.9:
-    resolution: {integrity: sha512-uUSze1Z72RiQjyoqr7r1KW+05WDNeqqKOeyJDPhw6EVEaOgp9RQNrr8AQt3OF7qylQbh2iVtT9r0nXIHlbJgqQ==}
+  /wretch/2.0.2:
+    resolution: {integrity: sha512-8UwKaNQOy8JV8PFBS30VRcAMbCmaC236zTI5TkCT929jdUEgUnme3hYM+PqovA1C093OPkewPK6+Hu3QrzoFRA==}
+    engines: {node: '>=14'}
     dev: false
 
   /ws/8.8.1:
