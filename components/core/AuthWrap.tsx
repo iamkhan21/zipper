@@ -1,7 +1,7 @@
 import React, { FC, ReactNode, useEffect } from "react";
 import { $authChecked, $user, checkAuthentication } from "@store/user";
 import { useStore } from "@nanostores/react";
-import Authentication from "@components/Authentication";
+import Authentication from "@components/core/Authentication";
 import Loader from "@components/shared/Loader";
 
 type Props = {

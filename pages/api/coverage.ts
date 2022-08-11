@@ -13,7 +13,7 @@ export default async function handler(
   }
 
   const resp = await fetch(
-    `https://api.mapbox.com/isochrone/v1/mapbox/driving/${lng},${lat}?contours_minutes=${time}&polygons=true&denoise=1&access_token=${token}`
+    `https://api.mapbox.com/isochrone/v1/mapbox/driving/${lng},${lat}?contours_minutes=${time}&polygons=true&denoise=1&generalize=500&access_token=${token}`
   );
   const data = await resp.json();
 

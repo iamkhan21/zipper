@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Card } from "@mantine/core";
-import SigninForm from "@components/Authentication/SigninForm";
-import SignupForm from "@components/Authentication/SignupForm";
+import SigninForm from "@components/core/Authentication/SigninForm";
+import SignupForm from "@components/core/Authentication/SignupForm";
 
 type FormType = "signin" | "signup";
 

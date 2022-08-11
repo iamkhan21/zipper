@@ -2,22 +2,28 @@ import React, { useEffect, useRef, useState } from "react";
 import type { LngLatLike, Map as MapObject } from "mapbox-gl";
 import { Marker } from "mapbox-gl";
 import {
-  addMapDraw,
-  createSource,
-  createSourceFillLayer,
-  createSourceLineLayer,
-  drawMarker,
-  fitToFeatureBounds,
-  initiateMap,
-  setDataToSource,
+    addMapDraw,
+    createSource,
+    createSourceFillLayer,
+    createSourceLineLayer,
+    drawMarker, FeatureData,
+    fitToFeatureBounds,
+    initiateMap,
+    setDataToSource,
 } from "@utils/map";
 import { useStore } from "@nanostores/react";
 import { featureCollection } from "@turf/helpers";
 import { $loader, disableLoader, enableLoader } from "@store/loader";
 import data from "../data.json";
-import { Feature, GeoJsonProperties, Geometry, Polygon } from "geojson";
+import { Feature, GeoJsonProperties, Geometry } from "geojson";
 import simplify from "@turf/simplify";
 import cleanCoords from "@turf/clean-coords";
+import {
+  $selectedCoverage,
+  fetchCoverage,
+  setCoverage,
+} from "@store/selected-coverage";
+import MapboxDraw from "@mapbox/mapbox-gl-draw";
 
 const isoSource = "iso";
 
@@ -59,12 +65,13 @@ const ZipMap = () => {
           });
 
           draw.current.delete(pids);
+          setCoverage(null);
         }
       });
 
-      map.current.on("draw.create", () => console.log("create"));
-      map.current.on("draw.delete", () => console.log("delete"));
-      map.current.on("draw.update", () => console.log("update"));
+      map.current.on("draw.create", setOptimizeArea);
+      map.current.on("draw.delete", () => setCoverage(null));
+      map.current.on("draw.update", setOptimizeArea);
 
       map.current.on("load", async () => {
         if (map.current) {
@@ -88,10 +95,7 @@ const ZipMap = () => {
           });
 
           draw.current = addMapDraw(map.current);
-          const simplifiedPoly = simplify(data.area.geometry as Polygon, {
-            tolerance: 0.125,
-          });
-          draw.current.add(simplifiedPoly);
+          draw.current.add(await fetchCoverage());
 
           disableLoader();
           setIsMapLoaded(true);
@@ -112,14 +116,15 @@ const ZipMap = () => {
       const areas = featureCollection(features);
 
       setDataToSource(map.current as MapObject, isoSource, areas);
-      features.length && fitToFeatureBounds(map.current as MapObject, areas);
+      const coverage = $selectedCoverage.get();
+      coverage && fitToFeatureBounds(map.current as MapObject, coverage);
     }
   }, [isMapLoaded]);
 
-  function optimizeArea() {
+  function setOptimizeArea() {
     const data = draw.current?.getAll();
     const cleaned = cleanCoords(data?.features[0]);
-    return simplify(cleaned, { tolerance: 0.01 });
+    setCoverage(simplify(cleaned, { tolerance: 0.01 }));
   }
 
   return (

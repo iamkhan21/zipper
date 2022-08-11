@@ -1,50 +1,39 @@
 import { atom } from "nanostores";
-import userbase, { UserResult as User } from "userbase-js";
-
-const APP_ID = process.env.NEXT_PUBLIC_USERBASE_APP_ID as string;
+import { auth } from "@lib/supabase";
+import { User } from "@supabase/supabase-js";
 
 export type Credentials = {
-  username: string;
+  email: string;
   password: string;
 };
 
 export const $user = atom<User | null>(null);
+
 export const $authChecked = atom<boolean>(false);
 
 export function checkAuthentication() {
-  userbase
-    .init({
-      appId: APP_ID,
-    })
-    .then((session) => {
-      if (session.user) {
-        $user.set(session.user);
-      } else {
-        $user.set(null);
-      }
-    })
-    .catch((e) => console.error(e))
-    .finally(() =>
-      setTimeout(() => {
-        $authChecked.set(true);
-      }, 1000)
-    );
+  const user = auth.user();
+  $user.set(user);
+
+  setTimeout(() => {
+    $authChecked.set(true);
+  }, 2000);
 }
 
 export function signup(creds: Credentials) {
-  return userbase.signUp({ ...creds, rememberMe: "local" }).then((user) => {
+  return auth.signUp(creds).then(({ user }) => {
     $user.set(user);
   });
 }
 
 export function signin(creds: Credentials) {
-  return userbase.signIn({ ...creds, rememberMe: "local" }).then((user) => {
+  return auth.signIn(creds).then(({ user }) => {
     $user.set(user);
   });
 }
 
 export function signout() {
-  return userbase.signOut().then(() => {
+  return auth.signOut().then(() => {
     $user.set(null);
   });
 }

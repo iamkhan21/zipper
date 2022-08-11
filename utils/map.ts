@@ -28,7 +28,7 @@ export function initiateMap(
   });
 }
 
-export function addMapDraw(map: Map):MapboxDraw {
+export function addMapDraw(map: Map): MapboxDraw {
   const draw = new MapboxDraw({
     displayControlsDefault: false,
     controls: {
@@ -143,7 +143,7 @@ export function setDataToSource(
   (map.getSource(sourceName) as GeoJSONSource).setData(data);
 }
 
-export function fitToFeatureBounds(map: Map, data: FeatureData) {
+export function fitToFeatureBounds(map: Map, data: FeatureData | Geometry) {
   const bounds = bbox(data);
   map.fitBounds(
     [

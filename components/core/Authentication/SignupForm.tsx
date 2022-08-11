@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Button, TextInput } from "@mantine/core";
 import { useForm } from "react-hook-form";
-import { Credentials, signin } from "@store/user";
+import { Credentials, signup } from "@store/user";
 
-const SigninForm = () => {
+const SignupForm = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const {
@@ -15,11 +15,11 @@ const SigninForm = () => {
     delayError: 750,
   });
 
-  function signinUser(data: Credentials) {
+  function signupUser(data: Credentials) {
     setError(null);
     setLoading(true);
 
-    signin(data).catch((e: Error) => {
+    signup(data).catch((e: Error) => {
       setLoading(false);
       setError(e.message);
       console.error(e);
@@ -27,21 +27,21 @@ const SigninForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit(signinUser)}>
+    <form onSubmit={handleSubmit(signupUser)}>
       <TextInput
         className="mb-2"
-        label="Username"
+        label="Email"
         disabled={loading}
-        {...register("username", { required: true })}
+        type="email"
+        {...register("email", { required: true })}
       />
       <TextInput
         className="mb-5"
         label="Password"
         type="password"
         disabled={loading}
-        {...register("password", { required: true })}
+        {...register("password", { minLength: 8, required: true })}
       />
-
       <Button
         type="submit"
         fullWidth
@@ -49,12 +49,11 @@ const SigninForm = () => {
         disabled={!isValid}
         loading={loading}
       >
-        Sign in
+        Sign up
       </Button>
-
       <p className="py-2 text-red-600">{error}</p>
     </form>
   );
 };
 
-export default SigninForm;
+export default SignupForm;

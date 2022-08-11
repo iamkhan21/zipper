@@ -4,6 +4,7 @@ import ServiceAddresses from "@components/home/ServiceAddresses";
 import { loadAddressesFromStorage } from "@store/address";
 import { useEffect } from "react";
 import { loadCoverageAreasFromStorage } from "@store/coverage-areas";
+import SaveCoverage from "@components/home/SaveCoverage";
 
 const Home: NextPage = () => {
   useEffect(() => {
@@ -18,6 +19,7 @@ const Home: NextPage = () => {
       </section>
       <aside className="ml-5 basis-90 space-y-5">
         <ServiceAddresses />
+        <SaveCoverage />
       </aside>
     </article>
   );
