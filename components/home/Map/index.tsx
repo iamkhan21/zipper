@@ -17,12 +17,13 @@ import { $loader, disableLoader, enableLoader } from "@store/loader";
 import data from "../data.json";
 import { Feature, GeoJsonProperties, Geometry, Polygon } from "geojson";
 import simplify from "@turf/simplify";
-import polygonSmooth from "@turf/polygon-smooth";
+import cleanCoords from "@turf/clean-coords";
 
 const isoSource = "iso";
 
 const ZipMap = () => {
   const map = useRef<MapObject | null>(null);
+  const draw = useRef<MapboxDraw | null>(null);
   const [isMapLoaded, setIsMapLoaded] = useState(false);
   const loader = useStore($loader);
 
@@ -42,16 +43,10 @@ const ZipMap = () => {
       const center: LngLatLike = [-96.064453125, 37.21720617274819];
 
       map.current = initiateMap("map", center, 4);
-      const Draw = addMapDraw(map.current);
 
-      const polygon = data.area.geometry as Polygon;
-      const simplified = simplify(polygon, { tolerance: 0.06 });
-      const smoothed = polygonSmooth(simplified, { iterations: 1 });
-      Draw.add(smoothed);
-
-      map.current.on("draw.modechange", (e) => {
-        const data = Draw.getAll();
-        if (Draw.getMode() == "draw_polygon") {
+      map.current.on("draw.modechange", () => {
+        const data = draw.current?.getAll();
+        if (data && draw.current?.getMode() == "draw_polygon") {
           const pids: any[] = [];
 
           // ID of the added template empty feature
@@ -63,9 +58,13 @@ const ZipMap = () => {
             }
           });
 
-          Draw.delete(pids);
+          draw.current.delete(pids);
         }
       });
+
+      map.current.on("draw.create", () => console.log("create"));
+      map.current.on("draw.delete", () => console.log("delete"));
+      map.current.on("draw.update", () => console.log("update"));
 
       map.current.on("load", async () => {
         if (map.current) {
@@ -87,6 +86,12 @@ const ZipMap = () => {
             opacity: 1,
             width: 1,
           });
+
+          draw.current = addMapDraw(map.current);
+          const simplifiedPoly = simplify(data.area.geometry as Polygon, {
+            tolerance: 0.125,
+          });
+          draw.current.add(simplifiedPoly);
 
           disableLoader();
           setIsMapLoaded(true);
@@ -110,6 +115,12 @@ const ZipMap = () => {
       features.length && fitToFeatureBounds(map.current as MapObject, areas);
     }
   }, [isMapLoaded]);
+
+  function optimizeArea() {
+    const data = draw.current?.getAll();
+    const cleaned = cleanCoords(data?.features[0]);
+    return simplify(cleaned, { tolerance: 0.01 });
+  }
 
   return (
     <>

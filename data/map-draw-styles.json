@@ -9,7 +9,7 @@
     },
     "paint": {
       "line-color": "#026401",
-      "line-width": 3
+      "line-width": 4
     }
   },
   {
@@ -22,7 +22,7 @@
     },
     "paint": {
       "line-color": "#026401",
-      "line-width": 3
+      "line-width": 4
     }
   },
   {
@@ -39,7 +39,7 @@
     "type": "circle",
     "filter": ["all", ["==", "$type", "Point"], ["==", "meta", "midpoint"]],
     "paint": {
-      "circle-radius": 6,
+      "circle-radius": 8,
       "circle-color": "#026401"
     }
   },
@@ -48,7 +48,7 @@
     "type": "circle",
     "filter": ["all", ["==", "$type", "Point"], ["==", "meta", "midpoint"]],
     "paint": {
-      "circle-radius": 3,
+      "circle-radius": 5,
       "circle-color": "#fff"
     }
   },
@@ -62,8 +62,8 @@
       ["!=", "mode", "static"]
     ],
     "paint": {
-      "circle-radius": 6,
-      "circle-color": "#026401"
+      "circle-radius": 8,
+      "circle-color": "#a30b0b"
     }
   },
   {
@@ -77,8 +77,8 @@
       ["!=", "mode", "static"]
     ],
     "paint": {
-      "circle-radius": 8,
-      "circle-color": "#a30b0b"
+      "circle-radius": 10,
+      "circle-color": "#4264fb"
     }
   },
   {
@@ -91,7 +91,7 @@
       ["!=", "mode", "static"]
     ],
     "paint": {
-      "circle-radius": 3,
+      "circle-radius": 5,
       "circle-color": "#fff"
     }
   }

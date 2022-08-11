@@ -28,7 +28,7 @@ export function initiateMap(
   });
 }
 
-export function addMapDraw(map: Map) {
+export function addMapDraw(map: Map):MapboxDraw {
   const draw = new MapboxDraw({
     displayControlsDefault: false,
     controls: {
