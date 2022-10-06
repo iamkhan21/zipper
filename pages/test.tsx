@@ -2,8 +2,6 @@ import React from "react";
 import data from "@components/home/data.json";
 import { Polygon } from "geojson";
 import simplify from "@turf/simplify";
-import polygonSmooth from "@turf/polygon-smooth";
-import cleanCoords from "@turf/clean-coords";
 
 const Test = () => {
   React.useEffect(() => {
@@ -14,7 +12,7 @@ const Test = () => {
     return () => {};
   }, []);
 
-  return <div>Testy</div>;
+  return <article>Testy</article>;
 };
 
 export default Test;

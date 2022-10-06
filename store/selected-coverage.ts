@@ -4,7 +4,6 @@ import { disableLoader, enableLoader } from "@store/loader";
 import { get, set } from "idb-keyval";
 import data from "@components/home/data.json";
 import bbox from "@turf/bbox";
-import bboxPolygon from "@turf/bbox-polygon";
 import { supabase } from "@lib/supabase";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 
@@ -48,7 +47,7 @@ export async function selectZipsInCoveredArea(area: Polygon) {
       booleanPointInPolygon([lng, lat], area)
     );
 
-    alert(`${insideZone.length} zips inside selected area`)
+    alert(`${insideZone.length} zips inside selected area`);
   }
 
   disableLoader();

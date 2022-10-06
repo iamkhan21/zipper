@@ -10,6 +10,21 @@ type Props = {
   appName: string;
 };
 
+const links = [
+  {
+    name: "Zip Selector",
+    path: "/zipper",
+  },
+  {
+    name: "Coverage Shape",
+    path: "/",
+  },
+  {
+    name: "Zip List",
+    path: "/zip-list",
+  },
+];
+
 const Header: FC<Props> = ({ appName }) => {
   const user = useStore($user);
   return (
@@ -25,12 +40,11 @@ const Header: FC<Props> = ({ appName }) => {
       </section>
       {user && (
         <nav className="flex items-center gap-5">
-          <Link href="/">
-            <a>Version 2</a>
-          </Link>
-          <Link href="/zipper">
-            <a>Version 1</a>
-          </Link>
+          {links.map(({ name, path }) => (
+            <Link key={name} href={path}>
+              <a>{name}</a>
+            </Link>
+          ))}
           <Button
             color="red"
             onClick={signout}

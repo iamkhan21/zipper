@@ -52,7 +52,7 @@ export async function convertGeonameDataToCSV(inputFilePath, outputFilePath) {
   const keys = new Set();
   try {
     const writeStream = fs.createWriteStream(outputFilePath);
-    writeStream.write(`country\tcode\tlat\tlng\n`);
+    writeStream.write(`country\tcode\tplace\tcounty\tstate\tcoords\n`);
 
     const rl = readline.createInterface({
       input: fs.createReadStream(inputFilePath),
@@ -61,15 +61,20 @@ export async function convertGeonameDataToCSV(inputFilePath, outputFilePath) {
 
     rl.on("line", (line) => {
       const data = line.split(/\t+/);
-      const country = data[0];
-      const code = data[1].replace(" ", "");
-      const lat = +data[data.length - 3];
-      const lng = +data[data.length - 2];
+      const country = data.at(0);
+      const code = data.at(1).replace(" ", "");
+      const place = data.at(2);
+      const state = data.at(3);
+      const county = data.at(5);
+      const lat = +data.at(-3);
+      const lng = +data.at(-2);
 
       if (keys.has(code)) {
         console.log("duplication", code);
       } else {
-        writeStream.write(`${country}\t${code}\t${lat}\t${lng}\n`);
+        writeStream.write(
+          `${country}\t${code}\t${place}\t${county}\t${state}\t(${lng},${lat})\n`
+        );
         keys.add(code);
       }
     });

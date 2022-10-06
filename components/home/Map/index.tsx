@@ -2,20 +2,17 @@ import React, { useEffect, useRef, useState } from "react";
 import type { LngLatLike, Map as MapObject } from "mapbox-gl";
 import { Marker } from "mapbox-gl";
 import {
-    addMapDraw,
-    createSource,
-    createSourceFillLayer,
-    createSourceLineLayer,
-    drawMarker, FeatureData,
-    fitToFeatureBounds,
-    initiateMap,
-    setDataToSource,
+  addMapDraw,
+  createSource,
+  createSourceFillLayer,
+  createSourceLineLayer,
+  drawMarker,
+  fitToFeatureBounds,
+  initiateMap,
 } from "@utils/map";
 import { useStore } from "@nanostores/react";
-import { featureCollection } from "@turf/helpers";
 import { $loader, disableLoader, enableLoader } from "@store/loader";
 import data from "../data.json";
-import { Feature, GeoJsonProperties, Geometry } from "geojson";
 import simplify from "@turf/simplify";
 import cleanCoords from "@turf/clean-coords";
 import {
@@ -77,7 +74,7 @@ const ZipMap = () => {
         if (map.current) {
           const service = data.service.coordinates;
           marker = drawMarker(map.current as MapObject, service as LngLatLike, {
-            color: "#444",
+            color: "#c50c0c",
           });
 
           createSource(map.current, isoSource);
@@ -112,10 +109,10 @@ const ZipMap = () => {
 
   useEffect(() => {
     if (map.current && isMapLoaded) {
-      const features = [data.area as Feature<Geometry, GeoJsonProperties>];
-      const areas = featureCollection(features);
-
-      setDataToSource(map.current as MapObject, isoSource, areas);
+      // const features = [data.area as Feature<Geometry, GeoJsonProperties>];
+      // const areas = featureCollection(features);
+      //
+      // setDataToSource(map.current as MapObject, isoSource, areas);
       const coverage = $selectedCoverage.get();
       coverage && fitToFeatureBounds(map.current as MapObject, coverage);
     }
