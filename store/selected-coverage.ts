@@ -1,11 +1,10 @@
 import { atom } from "nanostores";
-import { Polygon } from "geojson";
+import { Feature, Polygon } from "geojson";
 import { disableLoader, enableLoader } from "@store/loader";
 import { get, set } from "idb-keyval";
 import data from "@components/home/data.json";
-import bbox from "@turf/bbox";
 import { supabase } from "@lib/supabase";
-import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
+import { covertGeometryToString } from "@utils/converters";
 
 type Coverage = Polygon | null;
 const selectedCoverageKey = "selected-coverage";
@@ -26,28 +25,20 @@ export function saveSelectedCoverage() {
   const area = $selectedCoverage.get();
   if (area) {
     set(selectedCoverageKey, area);
-    selectZipsInCoveredArea(area);
+    selectZipsInCoveredArea(area as unknown as Feature<Polygon>);
   }
 }
 
-export async function selectZipsInCoveredArea(area: Polygon) {
+export async function selectZipsInCoveredArea(area: Feature<Polygon>) {
   enableLoader("Saving coverage area...");
-  const [minLng, minLat, maxLng, maxLat] = bbox(area);
 
-  const res = await supabase
-    .from("zipcodes")
-    .select()
-    .gte("lng", minLng)
-    .gte("lat", minLat)
-    .lte("lng", maxLng)
-    .lte("lat", maxLat);
+  const { data, error } = await supabase.rpc("find_zips_in_polygon", {
+    poly: covertGeometryToString(area.geometry.coordinates[0]),
+  });
 
-  if (res.data) {
-    const insideZone = res.data.filter(({ lng, lat }) =>
-      booleanPointInPolygon([lng, lat], area)
-    );
-
-    alert(`${insideZone.length} zips inside selected area`);
+  if (data) {
+    alert(`${data.length} zips inside selected area`);
+    console.log(data);
   }
 
   disableLoader();

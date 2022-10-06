@@ -11,8 +11,6 @@ specifiers:
   '@nanostores/react': 0.4.0
   '@supabase/supabase-js': 1.35.7
   '@turf/bbox': 6.5.0
-  '@turf/bbox-polygon': 6.5.0
-  '@turf/boolean-point-in-polygon': 6.5.0
   '@turf/circle': 6.5.0
   '@turf/clean-coords': 6.5.0
   '@turf/helpers': 6.5.0
@@ -56,8 +54,6 @@ dependencies:
   '@nanostores/react': 0.4.0_kumziggp74xxkphhh7wyh33hzm
   '@supabase/supabase-js': 1.35.7
   '@turf/bbox': 6.5.0
-  '@turf/bbox-polygon': 6.5.0
-  '@turf/boolean-point-in-polygon': 6.5.0
   '@turf/circle': 6.5.0
   '@turf/clean-coords': 6.5.0
   '@turf/helpers': 6.5.0
@@ -1418,12 +1414,6 @@ packages:
     resolution: {integrity: sha512-rEUrBSGIoSFuYxwBYtlUFMlE2CwGhmW+w9355/5oduSw8e5h2+Tj4UrAGNNgP9915++wj5vkQo0UuOBqOAq4nw==}
     dependencies:
       tslib: 2.4.0
-    dev: false
-
-  /@turf/bbox-polygon/6.5.0:
-    resolution: {integrity: sha512-+/r0NyL1lOG3zKZmmf6L8ommU07HliP4dgYToMoTxqzsWzyLjaj/OzgQ8rBmv703WJX+aS6yCmLuIhYqyufyuw==}
-    dependencies:
-      '@turf/helpers': 6.5.0
     dev: false
 
   /@turf/bbox/6.5.0:

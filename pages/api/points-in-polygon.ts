@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { supabase } from "@lib/supabase";
+import { covertGeometryToString } from "@utils/converters";
 
 export default async function handler(
   req: NextApiRequest,
@@ -12,9 +13,7 @@ export default async function handler(
   }
 
   const { data, error } = await supabase.rpc("find_zips_in_polygon", {
-    poly: `(${(area || [])
-      .map((point: number[]) => `(${point.join(",")})`)
-      .join(",")})`,
+    poly: covertGeometryToString(area),
   });
 
   if (error) {
